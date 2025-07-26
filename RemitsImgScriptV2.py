@@ -7,7 +7,7 @@ from concurrent.futures import ProcessPoolExecutor, as_completed
 from multiprocessing import cpu_count
 
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
-POPPLER_PATH = r"C:\Users\Revanth.REVANTH-SL3\Downloads\Release-24.08.0-0(1).zip\poppler-24.08.0\Library\bin"
+POPPLER_PATH = r"C:\Poppler\poppler-24.08.0\Library\bin"
 
 PDF_FOLDER = r"C:\Users\Revanth.REVANTH-SL3\Desktop\Blue Cross PDFs"
 OUTPUT_EXCEL = r"C:\Users\Revanth.REVANTH-SL3\Downloads\BC - Provider Claim Payments(Sheet1).csv"
@@ -76,7 +76,7 @@ def process_pdfs_parallel():
     if all_data:
         combined = pd.concat(all_data, ignore_index=True)
         os.makedirs(os.path.dirname(OUTPUT_EXCEL), exist_ok=True)
-        combined.to_excel(OUTPUT_EXCEL, index=False)
+        combined.to_csv(OUTPUT_EXCEL, index=False)
         print(f"\nData saved to {OUTPUT_EXCEL}")
     else:
         print("No data extracted — check DebugOCR folder for OCR outputs.")
